@@ -30,6 +30,13 @@ get_header();
                 while ( have_posts() ) :
                     the_post();
                     
+                    // Re-integrating the featured image with premium responsive styling
+                    if ( has_post_thumbnail() ) {
+                        echo '<div class="page-featured-image" style="background: var(--color-bg-body);">';
+                        the_post_thumbnail( 'full', [ 'class' => 'img-responsive', 'style' => 'width:100%; height:auto; display:block;' ] );
+                        echo '</div>';
+                    }
+
                     echo '<div class="entry-content">';
                     the_content();
                     echo '</div>';

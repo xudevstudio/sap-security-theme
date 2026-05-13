@@ -162,60 +162,7 @@ get_header();
 </div>
 
 
-<!-- ============================================
-     SAP SECURITY ROADMAP
-============================================ -->
-<section class="roadmap-section section">
-    <div class="container">
-        <div class="roadmap-box" data-aos="zoom-in">
-            <div class="roadmap-content">
-                <div class="section-label"><?php esc_html_e( 'Learning Path', 'sap-security-pro' ); ?></div>
-                <h2 class="section-title"><?php esc_html_e( 'SAP Security Mastery Roadmap', 'sap-security-pro' ); ?></h2>
-                <p class="section-desc"><?php esc_html_e( 'Follow our structured roadmap to transition from a beginner to a certified SAP Security professional.', 'sap-security-pro' ); ?></p>
-                
-                <div class="roadmap-steps">
-                    <div class="roadmap-step">
-                        <div class="roadmap-step__num">01</div>
-                        <div class="roadmap-step__body">
-                            <h4><?php esc_html_e( 'Foundations', 'sap-security-pro' ); ?></h4>
-                            <p><?php esc_html_e( 'Learn Web AS ABAP architecture, Client concept, and T-Code basics.', 'sap-security-pro' ); ?></p>
-                        </div>
-                    </div>
-                    <div class="roadmap-step">
-                        <div class="roadmap-step__num">02</div>
-                        <div class="roadmap-step__body">
-                            <h4><?php esc_html_e( 'Authorizations', 'sap-security-pro' ); ?></h4>
-                            <p><?php esc_html_e( 'Master PFCG, SU24, and the Role Maintenance life cycle.', 'sap-security-pro' ); ?></p>
-                        </div>
-                    </div>
-                    <div class="roadmap-step">
-                        <div class="roadmap-step__num">03</div>
-                        <div class="roadmap-step__body">
-                            <h4><?php esc_html_e( 'Advanced Topics', 'sap-security-pro' ); ?></h4>
-                            <p><?php esc_html_e( 'Dive into HR Security, RFC Security, and GRC integration.', 'sap-security-pro' ); ?></p>
-                        </div>
-                    </div>
-                    <div class="roadmap-step roadmap-step--finish">
-                        <div class="roadmap-step__num">✓</div>
-                        <div class="roadmap-step__body">
-                            <h4><?php esc_html_e( 'Audit & Compliance', 'sap-security-pro' ); ?></h4>
-                            <p><?php esc_html_e( 'Prepare for audits with SOX compliance and security guidelines.', 'sap-security-pro' ); ?></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="roadmap-cta">
-                <div class="roadmap-cta__inner">
-                    <h3><?php esc_html_e( 'Ready to Start?', 'sap-security-pro' ); ?></h3>
-                    <p><?php esc_html_e( 'Get instant access to our curated interview Q&A bank.', 'sap-security-pro' ); ?></p>
-                    <a href="<?php echo esc_url( home_url( '/sap-security-quiz' ) ); ?>" class="btn btn-primary btn-block">
-                        <?php esc_html_e( 'Start Learning Now', 'sap-security-pro' ); ?>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
+
 
 <!-- ============================================
      TOPICS / CATEGORIES SECTION
@@ -1505,5 +1452,60 @@ get_header();
     });
 })();
 </script>
+
+<!-- ============================================
+     SAP SECURITY ROADMAP
+============================================ -->
+<section class="roadmap-section section">
+    <div class="container">
+        <div class="roadmap-box" data-aos="zoom-in">
+            <div class="roadmap-content">
+                <div class="section-label"><?php esc_html_e( 'Learning Path', 'sap-security-pro' ); ?></div>
+                <h2 class="section-title"><?php esc_html_e( 'SAP Security Mastery Roadmap', 'sap-security-pro' ); ?></h2>
+                <p class="section-desc"><?php esc_html_e( 'Follow our structured roadmap to transition from a beginner to a certified SAP Security professional.', 'sap-security-pro' ); ?></p>
+                
+                <div class="roadmap-steps">
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">01</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Foundations', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Learn Web AS ABAP architecture, Client concept, and T-Code basics.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">02</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Authorizations', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Master PFCG, SU24, and the Role Maintenance life cycle.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">03</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Advanced Topics', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Dive into HR Security, RFC Security, and GRC integration.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step roadmap-step--finish">
+                        <div class="roadmap-step__num">✓</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Audit & Compliance', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Prepare for audits with SOX compliance and security guidelines.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="roadmap-cta">
+                <div class="roadmap-cta__inner">
+                    <h3><?php esc_html_e( 'Ready to Start?', 'sap-security-pro' ); ?></h3>
+                    <p><?php esc_html_e( 'Get instant access to our curated interview Q&A bank.', 'sap-security-pro' ); ?></p>
+                    <a href="<?php echo esc_url( home_url( '/sap-security-quiz' ) ); ?>" class="btn btn-primary btn-block">
+                        <?php esc_html_e( 'Start Learning Now', 'sap-security-pro' ); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <?php get_footer(); ?>
