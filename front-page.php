@@ -162,27 +162,44 @@ get_header();
 </div>
 
 <!-- ============================================
-     BROWSE BY CATEGORY — Dynamic Section
+     BROWSE BY CATEGORY — Professional UI
 ============================================ -->
-<section class="category-browse section--sm">
+<section class="category-browse section">
     <div class="container">
-        <div class="section-header section-header--compact">
-            <div class="section-label"><?php esc_html_e( 'Discover Content', 'sap-security-pro' ); ?></div>
-            <h2 class="section-title--sm"><?php esc_html_e( 'Browse by Category', 'sap-security-pro' ); ?></h2>
+        <div class="section-header">
+            <div class="section-label"><?php esc_html_e( 'Knowledge Architecture', 'sap-security-pro' ); ?></div>
+            <h2 class="section-title"><?php esc_html_e( 'Comprehensive Category Index', 'sap-security-pro' ); ?></h2>
+            <p class="section-desc"><?php esc_html_e( 'Access our entire SAP Security knowledge base organized by technical modules and professional domains.', 'sap-security-pro' ); ?></p>
         </div>
         
-        <div class="category-pills">
+        <div class="category-grid-pro">
             <?php
             $categories = get_categories([
-                'orderby' => 'count',
-                'order'   => 'DESC',
-                'hide_empty' => true
+                'orderby'    => 'name',
+                'order'      => 'ASC',
+                'hide_empty' => false // Show all as requested
             ]);
             
-            foreach($categories as $cat) : ?>
-                <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>" class="category-pill">
-                    <span class="category-pill__name"><?php echo esc_html($cat->name); ?></span>
-                    <span class="category-pill__count"><?php echo esc_html($cat->count); ?></span>
+            foreach($categories as $cat) : 
+                // Determine Icon based on name
+                $icon = 'M12 2L2 7l10 5 10-5-10-5z'; // Default
+                $name = strtolower($cat->name);
+                if (strpos($name, 'security') !== false) $icon = 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z';
+                if (strpos($name, 'hr') !== false || strpos($name, 'user') !== false) $icon = 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm7-3a3 3 0 11-6 0 3 3 0 016 0zm-1 13v-2a4 4 0 00-3-3.87M23 21v-2a4 4 0 00-3-3.87';
+                if (strpos($name, 'audit') !== false || strpos($name, 'check') !== false) $icon = 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4';
+                if (strpos($name, 'rfc') !== false || strpos($name, 'net') !== false) $icon = 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0';
+            ?>
+                <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>" class="cat-card-pro" data-aos="fade-up">
+                    <div class="cat-card-pro__icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="<?php echo $icon; ?>"/></svg>
+                    </div>
+                    <div class="cat-card-pro__content">
+                        <h3 class="cat-card-pro__name"><?php echo esc_html($cat->name); ?></h3>
+                        <span class="cat-card-pro__count"><?php echo sprintf( _n( '%s Article', '%s Articles', $cat->count, 'sap-security-pro' ), $cat->count ); ?></span>
+                    </div>
+                    <div class="cat-card-pro__arrow">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                    </div>
                 </a>
             <?php endforeach; ?>
         </div>
