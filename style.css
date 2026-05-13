@@ -91,11 +91,11 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: clip; /* Modern way to prevent horizontal scroll */
-    overflow-x: hidden;
     width: 100%;
     margin: 0;
     padding: 0;
+    overflow-x: clip;
+    overflow-x: hidden;
 }
 
 body {
@@ -106,10 +106,11 @@ body {
     line-height: 1.7;
     width: 100%;
     min-height: 100vh;
+    margin: 0;
+    padding: 0;
     overflow-x: clip;
     overflow-x: hidden;
     position: relative;
-    margin: 0;
 }
 
 /* AdSense Layout Shield - Revenue Friendly */
