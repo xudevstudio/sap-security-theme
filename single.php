@@ -39,6 +39,12 @@ get_header();
                 while ( have_posts() ) :
                     the_post();
                     
+                    if ( has_post_thumbnail() ) : ?>
+                        <div class="page-featured-image">
+                            <?php the_post_thumbnail('full'); ?>
+                        </div>
+                    <?php endif;
+
                     echo '<div class="entry-content">';
                     the_content();
                     echo '</div>';
