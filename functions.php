@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 // =====================================================
 // THEME CONSTANTS
 // =====================================================
-define( 'SAP_THEME_VERSION', '2.0.1' );
+define( 'SAP_THEME_VERSION', '2.0.2' );
 define( 'SAP_THEME_DIR', get_template_directory() );
 define( 'SAP_THEME_URI', get_template_directory_uri() );
 

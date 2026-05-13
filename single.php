@@ -50,105 +50,157 @@ get_header();
     </div>
 </main>
 
-<style>
-/* =====================================================
-   SINGLE POST TEMPLATE STYLES
-===================================================== */
-.page-hero {
-    position: relative;
-    padding: 6rem 0 4rem;
-    background: var(--color-primary-dark);
-    border-bottom: 1px solid rgba(0,212,255,0.1);
-    text-align: center;
-    overflow: hidden;
-}
-.page-hero__glow {
-    position: absolute;
-    top: 50%; left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60vw; height: 60vw;
-    background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 60%);
-    pointer-events: none;
-    z-index: 0;
-}
-.page-hero .container {
-    position: relative;
-    z-index: 1;
-}
-.page-hero__title {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 4vw, 3.5rem);
-    font-weight: 800;
-    color: var(--color-heading);
-    margin: 0;
-    letter-spacing: -0.02em;
-    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
-    line-height: 1.2;
-}
+<!-- ============================================
+     RECENT BLOGS
+============================================ -->
+<section class="recent-blogs-section section" style="background: rgba(13,30,56,0.2); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+    <div class="container">
+        <div class="section-header" style="margin-bottom: 3rem; text-align: left;">
+            <h2 class="section-title" style="font-size: 2rem;">Recent Blogs</h2>
+            <p class="section-desc" style="margin: 0;">Continue reading our latest insights and tutorials on SAP Security.</p>
+        </div>
+        
+        <div class="recent-blogs-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 2rem;">
+            <?php
+            $recent_posts = new WP_Query([
+                'post_type'      => 'post',
+                'posts_per_page' => 3,
+                'post__not_in'   => [get_the_ID()],
+                'ignore_sticky_posts' => 1
+            ]);
+            
+            if ($recent_posts->have_posts()) :
+                while ($recent_posts->have_posts()) : $recent_posts->the_post();
+            ?>
+                <a href="<?php the_permalink(); ?>" class="card recent-blog-card" style="text-decoration: none; display: flex; flex-direction: column;">
+                    <?php if (has_post_thumbnail()) : ?>
+                        <div class="recent-blog-img">
+                            <?php the_post_thumbnail('medium_large'); ?>
+                        </div>
+                    <?php endif; ?>
+                    <div style="font-size: 0.8rem; color: var(--color-accent); font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.5rem;">
+                        <?php 
+                        $categories = get_the_category();
+                        if (!empty($categories)) {
+                            echo esc_html($categories[0]->name);
+                        }
+                        ?>
+                    </div>
+                    <h3 style="font-size: 1.25rem; color: var(--color-heading); margin-bottom: 1rem; line-height: 1.4; flex-grow: 1;"><?php the_title(); ?></h3>
+                    <div style="font-size: 0.85rem; color: var(--color-text-muted); display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);">
+                        <span><?php echo get_the_date(); ?></span>
+                        <span style="color: var(--color-accent); font-weight: 500;">Read Article &rarr;</span>
+                    </div>
+                </a>
+            <?php 
+                endwhile;
+                wp_reset_postdata();
+            else:
+                echo '<p style="color: var(--color-text-muted);">No recent posts available.</p>';
+            endif;
+            ?>
+        </div>
+    </div>
+</section>
 
-.page-main {
-    padding: 5rem 0;
-}
-.page-content-wrapper {
-    max-width: 900px;
-    margin: 0 auto;
-    background: var(--color-bg-card);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-xl);
-    padding: 3.5rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-}
-.page-featured-image {
-    margin: -3.5rem -3.5rem 2.5rem -3.5rem;
-    border-radius: var(--radius-xl) var(--radius-xl) 0 0;
-    overflow: hidden;
-    border-bottom: 1px solid var(--color-border);
-}
-.page-featured-image img {
-    width: 100%;
-    height: auto;
-    display: block;
-    max-height: 650px;
-    object-fit: cover;
-}
+<!-- ============================================
+     BROWSE BY CATEGORY — Professional UI
+============================================ -->
+<section class="category-browse section">
+    <div class="container">
+        <div class="section-header">
+            <div class="section-label"><?php esc_html_e( 'Knowledge Architecture', 'sap-security-pro' ); ?></div>
+            <h2 class="section-title"><?php esc_html_e( 'Comprehensive Category Index', 'sap-security-pro' ); ?></h2>
+            <p class="section-desc"><?php esc_html_e( 'Access our entire SAP Security knowledge base organized by technical modules and professional domains.', 'sap-security-pro' ); ?></p>
+        </div>
+        
+        <div class="category-grid-pro">
+            <?php
+            $categories = get_categories([
+                'orderby'    => 'name',
+                'order'      => 'ASC',
+                'hide_empty' => false // Show all as requested
+            ]);
+            
+            foreach($categories as $cat) : 
+                // Determine Icon based on name
+                $icon = 'M12 2L2 7l10 5 10-5-10-5z'; // Default
+                $name = strtolower($cat->name);
+                if (strpos($name, 'security') !== false) $icon = 'M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z';
+                if (strpos($name, 'hr') !== false || strpos($name, 'user') !== false) $icon = 'M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zm7-3a3 3 0 11-6 0 3 3 0 016 0zm-1 13v-2a4 4 0 00-3-3.87M23 21v-2a4 4 0 00-3-3.87';
+                if (strpos($name, 'audit') !== false || strpos($name, 'check') !== false) $icon = 'M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4';
+                if (strpos($name, 'rfc') !== false || strpos($name, 'net') !== false) $icon = 'M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.14 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0';
+            ?>
+                <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>" class="cat-card-pro">
+                    <div class="cat-card-pro__icon">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="<?php echo $icon; ?>"/></svg>
+                    </div>
+                    <div class="cat-card-pro__content">
+                        <h3 class="cat-card-pro__name"><?php echo esc_html($cat->name); ?></h3>
+                        <span class="cat-card-pro__count"><?php echo sprintf( _n( '%s Article', '%s Articles', $cat->count, 'sap-security-pro' ), $cat->count ); ?></span>
+                    </div>
+                    <div class="cat-card-pro__arrow">
+                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+                    </div>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
 
-/* HIGH VISIBILITY TEXT SETTINGS FOR DARK MODE */
-.entry-content {
-    color: #f8fafc;
-    font-size: 1.15rem;
-    line-height: 1.7;
-    letter-spacing: 0.01em;
-}
-.entry-content p, .entry-content li, .entry-content span, .entry-content div {
-    color: #f8fafc !important; /* Force light text to override any block editor defaults */
-}
-.entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4, .entry-content h5, .entry-content h6 {
-    color: #ffffff !important;
-    font-family: var(--font-display);
-    margin-top: 2.5rem;
-    margin-bottom: 1rem;
-    font-weight: 700;
-    line-height: 1.3;
-}
-.entry-content h2 { font-size: 2.2rem; border-bottom: 2px solid rgba(0,212,255,0.2); padding-bottom: 0.5rem; }
-.entry-content h3 { font-size: 1.6rem; color: #00d4ff !important; }
-.entry-content p { margin-bottom: 1.2rem; }
-.entry-content a { color: #00e5a0 !important; text-decoration: none; border-bottom: 1px solid rgba(0,229,160,0.3); transition: all 0.2s; font-weight: 500; }
-.entry-content a:hover { border-bottom-color: #00e5a0; color: #fff !important; }
-.entry-content strong, .entry-content b { color: #00d4ff !important; font-weight: 700; letter-spacing: 0.02em; }
-.entry-content ul, .entry-content ol { background: rgba(0,0,0,0.2); padding: 1.5rem 1.5rem 1.5rem 3rem; border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); margin-bottom: 2rem; }
-.entry-content li { margin-bottom: 0.8rem; }
-.entry-content li::marker { color: #00d4ff; font-weight: bold; }
-.entry-content blockquote { background: linear-gradient(90deg, rgba(0,212,255,0.1), transparent); border-left: 4px solid #00d4ff; padding: 1.5rem 2rem; margin: 2rem 0; border-radius: 0 12px 12px 0; font-style: italic; font-size: 1.25rem; }
-.entry-content blockquote p { margin-bottom: 0; color: #e2e8f0 !important; }
-.entry-content img { max-width: 100%; height: auto; border-radius: 12px; margin: 2rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-
-@media (max-width: 768px) {
-    .page-hero { padding: 4rem 0 3rem; }
-    .page-content-wrapper { padding: 2rem; }
-    .page-featured-image { margin: -2rem -2rem 1.5rem -2rem; }
-    .page-main { padding: 3rem 0; }
-}
-</style>
+<!-- ============================================
+     SAP SECURITY ROADMAP
+============================================ -->
+<section class="roadmap-section section">
+    <div class="container">
+        <div class="roadmap-box">
+            <div class="roadmap-content">
+                <div class="section-label"><?php esc_html_e( 'Learning Path', 'sap-security-pro' ); ?></div>
+                <h2 class="section-title"><?php esc_html_e( 'SAP Security Mastery Roadmap', 'sap-security-pro' ); ?></h2>
+                <p class="section-desc"><?php esc_html_e( 'Follow our structured roadmap to transition from a beginner to a certified SAP Security professional.', 'sap-security-pro' ); ?></p>
+                
+                <div class="roadmap-steps">
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">01</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Foundations', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Learn Web AS ABAP architecture, Client concept, and T-Code basics.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">02</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Authorizations', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Master PFCG, SU24, and the Role Maintenance life cycle.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">03</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Advanced Topics', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Dive into HR Security, RFC Security, and GRC integration.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step roadmap-step--finish">
+                        <div class="roadmap-step__num">✓</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Audit & Compliance', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Prepare for audits with SOX compliance and security guidelines.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="roadmap-cta">
+                <div class="roadmap-cta__inner">
+                    <h3><?php esc_html_e( 'Ready to Start?', 'sap-security-pro' ); ?></h3>
+                    <p><?php esc_html_e( 'Get instant access to our curated interview Q&A bank.', 'sap-security-pro' ); ?></p>
+                    <a href="<?php echo esc_url( home_url( '/interview-questions-part-1' ) ); ?>" class="btn btn-primary btn-block">
+                        <?php esc_html_e( 'Start Learning Now', 'sap-security-pro' ); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <?php get_footer(); ?>
