@@ -1182,7 +1182,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     padding: 6rem 0 4rem;
     background: var(--color-primary-dark);
     border-bottom: 1px solid rgba(0,212,255,0.1);
-    text-align: center;
+    text-align: left;
     overflow: hidden;
 }
 .page-hero__glow {
@@ -1204,6 +1204,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     font-weight: 800;
     color: var(--color-heading);
     margin: 0;
+    max-width: 1000px;
     letter-spacing: -0.02em;
     text-shadow: 0 4px 20px rgba(0,0,0,0.5);
     line-height: 1.2;
