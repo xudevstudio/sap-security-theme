@@ -162,6 +162,89 @@ get_header();
 </div>
 
 <!-- ============================================
+     BROWSE BY CATEGORY — Dynamic Section
+============================================ -->
+<section class="category-browse section--sm">
+    <div class="container">
+        <div class="section-header section-header--compact">
+            <div class="section-label"><?php esc_html_e( 'Discover Content', 'sap-security-pro' ); ?></div>
+            <h2 class="section-title--sm"><?php esc_html_e( 'Browse by Category', 'sap-security-pro' ); ?></h2>
+        </div>
+        
+        <div class="category-pills">
+            <?php
+            $categories = get_categories([
+                'orderby' => 'count',
+                'order'   => 'DESC',
+                'hide_empty' => true
+            ]);
+            
+            foreach($categories as $cat) : ?>
+                <a href="<?php echo esc_url(get_category_link($cat->term_id)); ?>" class="category-pill">
+                    <span class="category-pill__name"><?php echo esc_html($cat->name); ?></span>
+                    <span class="category-pill__count"><?php echo esc_html($cat->count); ?></span>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
+     SAP SECURITY ROADMAP
+============================================ -->
+<section class="roadmap-section section">
+    <div class="container">
+        <div class="roadmap-box" data-aos="zoom-in">
+            <div class="roadmap-content">
+                <div class="section-label"><?php esc_html_e( 'Learning Path', 'sap-security-pro' ); ?></div>
+                <h2 class="section-title"><?php esc_html_e( 'SAP Security Mastery Roadmap', 'sap-security-pro' ); ?></h2>
+                <p class="section-desc"><?php esc_html_e( 'Follow our structured roadmap to transition from a beginner to a certified SAP Security professional.', 'sap-security-pro' ); ?></p>
+                
+                <div class="roadmap-steps">
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">01</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Foundations', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Learn Web AS ABAP architecture, Client concept, and T-Code basics.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">02</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Authorizations', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Master PFCG, SU24, and the Role Maintenance life cycle.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step">
+                        <div class="roadmap-step__num">03</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Advanced Topics', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Dive into HR Security, RFC Security, and GRC integration.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                    <div class="roadmap-step roadmap-step--finish">
+                        <div class="roadmap-step__num">✓</div>
+                        <div class="roadmap-step__body">
+                            <h4><?php esc_html_e( 'Audit & Compliance', 'sap-security-pro' ); ?></h4>
+                            <p><?php esc_html_e( 'Prepare for audits with SOX compliance and security guidelines.', 'sap-security-pro' ); ?></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="roadmap-cta">
+                <div class="roadmap-cta__inner">
+                    <h3><?php esc_html_e( 'Ready to Start?', 'sap-security-pro' ); ?></h3>
+                    <p><?php esc_html_e( 'Get instant access to our curated interview Q&A bank.', 'sap-security-pro' ); ?></p>
+                    <a href="<?php echo esc_url( home_url( '/sap-security-quiz' ) ); ?>" class="btn btn-primary btn-block">
+                        <?php esc_html_e( 'Start Learning Now', 'sap-security-pro' ); ?>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================
      TOPICS / CATEGORIES SECTION
 ============================================ -->
 <section id="topics-section" class="topics-section section" aria-labelledby="topics-heading">
