@@ -30,13 +30,6 @@ get_header();
                 while ( have_posts() ) :
                     the_post();
                     
-                    // If a featured image exists, display it at the top of the content
-                    if ( has_post_thumbnail() ) {
-                        echo '<div class="page-featured-image">';
-                        the_post_thumbnail( 'large', [ 'class' => 'img-responsive' ] );
-                        echo '</div>';
-                    }
-
                     echo '<div class="entry-content">';
                     the_content();
                     echo '</div>';
