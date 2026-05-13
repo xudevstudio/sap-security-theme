@@ -845,15 +845,27 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     object-fit: cover;
 }
 
-/* ENTRY CONTENT REFINEMENT */
+/* ENTRY CONTENT REFINEMENT - Aggressive Visibility Shield */
 .entry-content {
     font-size: 1.125rem;
     line-height: 1.8;
-    color: var(--color-text);
+    color: #ffffff !important; /* Total visibility */
 }
 
-.entry-content p {
-    margin-bottom: 1.8rem;
+/* Force light colors on everything inside to override bad editor styles */
+.entry-content p, 
+.entry-content span, 
+.entry-content div, 
+.entry-content li, 
+.entry-content em, 
+.entry-content font {
+    color: #e2e8f0 !important; /* Premium light slate */
+    background-color: transparent !important;
+}
+
+/* Specific fix for blue or dark text injected via inline styles */
+.entry-content [style*="color"] {
+    color: #ffffff !important;
 }
 
 .entry-content h1, .entry-content h2, .entry-content h3, .entry-content h4 {
@@ -886,6 +898,12 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     color: var(--color-accent) !important;
 }
 
+.entry-content a {
+    color: var(--color-accent) !important;
+    text-decoration: underline !important;
+    font-weight: 600;
+}
+
 .entry-content ul, .entry-content ol {
     margin-bottom: 2rem;
     padding-left: 1.5rem;
@@ -893,6 +911,7 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 
 .entry-content li {
     margin-bottom: 0.75rem;
+    color: #e2e8f0 !important;
 }
 
 .entry-content blockquote {
@@ -902,8 +921,14 @@ tr:hover td { background: rgba(255,255,255,0.02); }
     margin: 3rem 0;
     font-style: italic;
     font-size: 1.25rem;
-    color: var(--color-text-muted);
+    color: #94a3b8 !important;
     border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+/* INTERVIEW QUESTIONS SPECIAL STYLING */
+.entry-content strong {
+    color: var(--color-accent-warm) !important;
+    font-weight: 700;
 }
 
 .page-footer-actions {
