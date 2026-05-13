@@ -32,18 +32,12 @@ get_header();
 </section>
 
 <main id="main" class="site-main page-main">
-    <div class="container container--narrow">
+    <div class="container">
         <article class="page-content-card" data-aos="fade-up" data-aos-delay="100">
             <?php
             while ( have_posts() ) :
                 the_post();
                 
-                if ( has_post_thumbnail() ) {
-                    echo '<div class="page-featured-image">';
-                    the_post_thumbnail( 'full', [ 'class' => 'img-responsive' ] );
-                    echo '</div>';
-                }
-
                 echo '<div class="entry-content">';
                 the_content();
                 echo '</div>';
