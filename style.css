@@ -91,6 +91,7 @@ html {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip; /* Modern way to prevent horizontal scroll */
     overflow-x: hidden;
     width: 100%;
     margin: 0;
@@ -105,6 +106,7 @@ body {
     line-height: 1.7;
     width: 100%;
     min-height: 100vh;
+    overflow-x: clip;
     overflow-x: hidden;
     position: relative;
     margin: 0;
@@ -112,13 +114,15 @@ body {
 
 /* AdSense Layout Shield - Revenue Friendly */
 .adsbygoogle, 
-ins.adsbygoogle {
+ins.adsbygoogle,
+.google-auto-placed {
     max-width: 100% !important;
     display: block !important;
 }
 
 /* Layout Guard for Main Content */
 .site-main {
+    overflow-x: clip;
     overflow-x: hidden;
     width: 100%;
     position: relative;
