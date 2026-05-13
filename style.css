@@ -72,14 +72,14 @@ Tags: blog, custom-background, custom-logo, custom-menu, featured-images, thread
     --transition-slow: 0.5s ease;
 
     /* Layout */
-    --container-max: 1320px;
+    --container-max: 1180px;
     --header-height: 80px;
     --sidebar-width: 320px;
 }
 
 /* =====================================================
    RESET & BASE
-===================================================== */
+==================================================== */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -94,8 +94,7 @@ html {
     width: 100%;
     margin: 0;
     padding: 0;
-    overflow-x: clip;
-    overflow-x: hidden;
+    /* Removed overflow-x: hidden from html to allow AdSense Rail ads */
 }
 
 body {
