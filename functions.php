@@ -280,6 +280,28 @@ function sap_customize_register( $wp_customize ) {
         $wp_customize->add_control( $id, [ 'label' => esc_html__( $args['label'], 'sap-security-pro' ), 'section' => 'sap_hero', 'type' => 'text' ] );
     }
 
+    // Hero Stats
+    $wp_customize->add_section( 'sap_hero_stats', [
+        'title'    => esc_html__( 'Hero Stats', 'sap-security-pro' ),
+        'priority' => 31,
+    ]);
+
+    $stats_settings = [
+        'sap_stat_1_number' => [ 'default' => '50+', 'label' => 'Stat 1 Number' ],
+        'sap_stat_1_label'  => [ 'default' => 'In-depth Articles', 'label' => 'Stat 1 Label' ],
+        'sap_stat_2_number' => [ 'default' => '7+', 'label' => 'Stat 2 Number' ],
+        'sap_stat_2_label'  => [ 'default' => 'SAP Modules Covered', 'label' => 'Stat 2 Label' ],
+        'sap_stat_3_number' => [ 'default' => '200+', 'label' => 'Stat 3 Number' ],
+        'sap_stat_3_label'  => [ 'default' => 'Interview Questions', 'label' => 'Stat 3 Label' ],
+        'sap_stat_4_number' => [ 'default' => '10K+', 'label' => 'Stat 4 Number' ],
+        'sap_stat_4_label'  => [ 'default' => 'Monthly Readers', 'label' => 'Stat 4 Label' ],
+    ];
+
+    foreach ( $stats_settings as $id => $args ) {
+        $wp_customize->add_setting( $id, [ 'default' => $args['default'], 'sanitize_callback' => 'sanitize_text_field' ] );
+        $wp_customize->add_control( $id, [ 'label' => esc_html__( $args['label'], 'sap-security-pro' ), 'section' => 'sap_hero_stats', 'type' => 'text' ] );
+    }
+
     // Footer Section
     $wp_customize->add_section( 'sap_footer', [
         'title'    => esc_html__( 'Footer Options', 'sap-security-pro' ),
