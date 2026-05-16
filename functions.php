@@ -807,7 +807,7 @@ function sap_quiz_ui_fix() {
         .mtq_quiz_area {
             padding: 1rem !important;
             margin: 1rem 0 !important;
-            overflow: hidden !important;
+            box-sizing: border-box !important;
         }
         .mtq_answer_table {
             display: block !important;
@@ -841,6 +841,25 @@ function sap_quiz_ui_fix() {
         }
         .mtq_answer_text {
             font-size: 0.9rem !important;
+        }
+        /* Mobile fixes for Quiz Buttons (Start, List, Restart) */
+        .mtq_css_button, [class*="mtq_color_"] .mtq_css_button, .mtq_quiz_area input[type="button"] {
+            max-width: 100% !important;
+            white-space: normal !important;
+            word-wrap: break-word !important;
+            height: auto !important;
+            padding: 0.6rem 1rem !important;
+            font-size: 0.85rem !important;
+            display: inline-block !important;
+            margin: 5px 2px !important;
+            box-sizing: border-box !important;
+        }
+        /* Fix the container that holds the buttons */
+        .mtq_button_table, .mtq_button_row, .mtq_quiz_area table, .mtq_quiz_area tbody, .mtq_quiz_area tr, .mtq_quiz_area td {
+            max-width: 100% !important;
+        }
+        .mtq_quiz_area table {
+            display: block !important;
         }
     }
     
