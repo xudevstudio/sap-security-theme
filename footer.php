@@ -690,6 +690,18 @@
             timeout = setTimeout(() => func.apply(this, args), wait);
         };
     }
+
+    // === RESPONSIVE TABLES WRAPPER ===
+    document.querySelectorAll('table').forEach(table => {
+        // Skip if already wrapped by Gutenberg block or our responsive wrapper
+        if(!table.parentElement.classList.contains('table-responsive') && !table.parentElement.classList.contains('wp-block-table')) {
+            const wrapper = document.createElement('div');
+            wrapper.className = 'table-responsive';
+            table.parentNode.insertBefore(wrapper, table);
+            wrapper.appendChild(table);
+        }
+    });
+
 })();
 </script>
 

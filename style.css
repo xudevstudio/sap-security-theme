@@ -647,22 +647,29 @@ hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
 /* =====================================================
    TABLE STYLES
 ===================================================== */
-table {
+/* Responsive Table Wrapper */
+.table-responsive, .wp-block-table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 1.5rem 0;
-    font-size: 0.9rem;
-    display: block;
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
+    margin: 1.5rem 0;
+    border: 1px solid rgba(0,212,255,0.15); /* optional border for the wrapper */
+    border-radius: var(--radius-md);
 }
 
-@media (min-width: 768px) {
-    table {
-        display: table;
-        white-space: normal;
+.table-responsive table, .wp-block-table table {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    border: none;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+    .table-responsive table, .wp-block-table table {
+        min-width: 600px; /* Force scroll instead of squishing text */
     }
 }
 
