@@ -649,6 +649,7 @@ hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
 ===================================================== */
 /* Responsive Table Wrapper */
 .table-responsive, .wp-block-table {
+    display: block;
     width: 100%;
     max-width: 100%;
     overflow-x: auto;
@@ -656,6 +657,25 @@ hr { border: none; border-top: 1px solid var(--color-border); margin: 2rem 0; }
     margin: 1.5rem 0;
     border: 1px solid rgba(0,212,255,0.15); /* optional border for the wrapper */
     border-radius: var(--radius-md);
+    position: relative;
+    clear: both;
+}
+
+/* Custom Scrollbar to indicate scrolling clearly */
+.table-responsive::-webkit-scrollbar, .wp-block-table::-webkit-scrollbar {
+    height: 10px;
+}
+.table-responsive::-webkit-scrollbar-track, .wp-block-table::-webkit-scrollbar-track {
+    background: rgba(0,212,255,0.05);
+    border-radius: 0 0 var(--radius-md) var(--radius-md);
+}
+.table-responsive::-webkit-scrollbar-thumb, .wp-block-table::-webkit-scrollbar-thumb {
+    background: linear-gradient(90deg, var(--color-accent), var(--color-accent-warm));
+    border-radius: 10px;
+    box-shadow: inset 0 0 0 2px var(--color-bg-card); /* Creates padding effect */
+}
+.table-responsive::-webkit-scrollbar-thumb:hover, .wp-block-table::-webkit-scrollbar-thumb:hover {
+    background: var(--color-accent-warm);
 }
 
 .table-responsive table, .wp-block-table table {
