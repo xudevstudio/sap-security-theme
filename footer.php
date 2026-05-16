@@ -87,21 +87,17 @@
 
                     <!-- Stats Row -->
                     <div class="footer-stats">
-                        <?php
-                        $post_count = wp_count_posts()->publish;
-                        $category_count = wp_count_terms( [ 'taxonomy' => 'category', 'hide_empty' => false ] );
-                        ?>
                         <div class="footer-stat">
-                            <span class="footer-stat__number"><?php echo number_format( $post_count ); ?>+</span>
-                            <span class="footer-stat__label"><?php esc_html_e( 'Articles', 'sap-security-pro' ); ?></span>
+                            <span class="footer-stat__number"><?php echo esc_html( get_theme_mod( 'sap_footer_stat_1_number', '47+' ) ); ?></span>
+                            <span class="footer-stat__label"><?php echo esc_html( get_theme_mod( 'sap_footer_stat_1_label', 'Articles' ) ); ?></span>
                         </div>
                         <div class="footer-stat">
-                            <span class="footer-stat__number"><?php echo number_format( is_wp_error( $category_count ) ? 0 : $category_count ); ?>+</span>
-                            <span class="footer-stat__label"><?php esc_html_e( 'Topics', 'sap-security-pro' ); ?></span>
+                            <span class="footer-stat__number"><?php echo esc_html( get_theme_mod( 'sap_footer_stat_2_number', '7+' ) ); ?></span>
+                            <span class="footer-stat__label"><?php echo esc_html( get_theme_mod( 'sap_footer_stat_2_label', 'Topics' ) ); ?></span>
                         </div>
                         <div class="footer-stat">
-                            <span class="footer-stat__number">10K+</span>
-                            <span class="footer-stat__label"><?php esc_html_e( 'Readers', 'sap-security-pro' ); ?></span>
+                            <span class="footer-stat__number"><?php echo esc_html( get_theme_mod( 'sap_footer_stat_3_number', '10K+' ) ); ?></span>
+                            <span class="footer-stat__label"><?php echo esc_html( get_theme_mod( 'sap_footer_stat_3_label', 'Readers' ) ); ?></span>
                         </div>
                     </div>
 

@@ -318,6 +318,21 @@ function sap_customize_register( $wp_customize ) {
         'type'    => 'textarea',
     ]);
 
+    // Footer Stats Settings
+    $footer_stats_settings = [
+        'sap_footer_stat_1_number' => [ 'default' => '47+', 'label' => 'Footer Stat 1 Number' ],
+        'sap_footer_stat_1_label'  => [ 'default' => 'Articles', 'label' => 'Footer Stat 1 Label' ],
+        'sap_footer_stat_2_number' => [ 'default' => '7+', 'label' => 'Footer Stat 2 Number' ],
+        'sap_footer_stat_2_label'  => [ 'default' => 'Topics', 'label' => 'Footer Stat 2 Label' ],
+        'sap_footer_stat_3_number' => [ 'default' => '10K+', 'label' => 'Footer Stat 3 Number' ],
+        'sap_footer_stat_3_label'  => [ 'default' => 'Readers', 'label' => 'Footer Stat 3 Label' ],
+    ];
+
+    foreach ( $footer_stats_settings as $id => $args ) {
+        $wp_customize->add_setting( $id, [ 'default' => $args['default'], 'sanitize_callback' => 'sanitize_text_field' ] );
+        $wp_customize->add_control( $id, [ 'label' => esc_html__( $args['label'], 'sap-security-pro' ), 'section' => 'sap_footer', 'type' => 'text' ] );
+    }
+
     // Social Links
     $social_links = [ 'linkedin', 'twitter', 'youtube', 'github', 'rss' ];
     foreach ( $social_links as $social ) {
