@@ -569,12 +569,17 @@
 .mobile-menu__nav { flex: 1; padding: 0.75rem 0; }
 .mobile-nav { list-style: none; padding: 0; margin: 0; }
 .mobile-nav .nav__item > .nav__link {
-    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 0.75rem 1.5rem;
     color: var(--color-text-muted);
     font-size: 0.95rem;
     border-left: 3px solid transparent;
     transition: all 0.2s;
+    white-space: normal; /* Fix for overflow */
+    word-wrap: break-word;
+    line-height: 1.4;
 }
 .mobile-nav .nav__link:hover, .mobile-nav .nav__link.active {
     color: var(--color-accent);
@@ -594,12 +599,13 @@
     display: none;
 }
 .mobile-nav .nav__item.open > .nav__dropdown { display: block; }
-.mobile-nav .nav__dropdown .nav__link { padding-left: 2.5rem; font-size: 0.875rem; }
-.mobile-nav .nav__dropdown .nav__dropdown .nav__link { padding-left: 3.5rem; font-size: 0.8rem; }
-.mobile-nav .menu-item-has-children > .nav__link {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.mobile-nav .nav__dropdown .nav__link { padding-left: 2.5rem; font-size: 0.875rem; white-space: normal; word-break: break-word; }
+.mobile-nav .nav__dropdown .nav__dropdown .nav__link { padding-left: 3.5rem; font-size: 0.8rem; white-space: normal; word-break: break-word; }
+.mobile-nav .menu-item-has-children > .nav__link .nav__chevron {
+    transform: rotate(0deg);
+    transition: transform 0.3s;
+    flex-shrink: 0;
+    margin-left: 10px;
 }
 .mobile-nav .menu-item-has-children.open > .nav__link .nav__chevron {
     transform: rotate(180deg);

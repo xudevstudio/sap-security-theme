@@ -256,6 +256,10 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
     line-height: 1.2;
     letter-spacing: -0.02em;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
 }
 
 h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
@@ -264,6 +268,11 @@ h3 { font-size: clamp(1.2rem, 2.5vw, 1.75rem); }
 h4 { font-size: 1.25rem; }
 h5 { font-size: 1.1rem; }
 h6 { font-size: 1rem; }
+
+p, a, li, span, div {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
 
 p { margin-bottom: 1rem; color: var(--color-text); }
 a { color: var(--color-accent); text-decoration: none; transition: color var(--transition-fast); }
