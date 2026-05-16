@@ -652,6 +652,18 @@ table {
     border-collapse: collapse;
     margin: 1.5rem 0;
     font-size: 0.9rem;
+    display: block;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    table {
+        display: table;
+        white-space: normal;
+    }
 }
 
 th {
