@@ -737,6 +737,8 @@ function sap_quiz_ui_fix() {
         padding: 2rem !important;
         margin: 2rem 0 !important;
         font-family: 'Inter', sans-serif !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
     }
     .mtq_question_text {
         color: #e2e8f0 !important;
@@ -799,6 +801,49 @@ function sap_quiz_ui_fix() {
     .mtq_answer_table tr:hover .mtq_answer_text {
         color: #ffffff !important;
     }
+    
+    /* Responsive fixes for Quiz on Mobile */
+    @media (max-width: 768px) {
+        .mtq_quiz_area {
+            padding: 1rem !important;
+            margin: 1rem 0 !important;
+            overflow: hidden !important;
+        }
+        .mtq_answer_table {
+            display: block !important;
+            width: 100% !important;
+        }
+        .mtq_answer_table tbody {
+            display: block !important;
+            width: 100% !important;
+        }
+        .mtq_answer_table tr {
+            display: flex !important;
+            align-items: center !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+            padding: 0.5rem !important;
+        }
+        .mtq_answer_table tr td {
+            padding: 0.25rem !important;
+            border: none !important;
+            background: transparent !important;
+        }
+        .mtq_answer_table tr td:first-child {
+            flex-shrink: 0 !important;
+            margin-right: 10px !important;
+        }
+        .mtq_question_text, .mtq_answer_text {
+            word-wrap: break-word !important;
+            overflow-wrap: break-word !important;
+            white-space: normal !important;
+            line-height: 1.4 !important;
+        }
+        .mtq_answer_text {
+            font-size: 0.9rem !important;
+        }
+    }
+    
     /* Buttons */
     .mtq_css_button,
     [class*="mtq_color_"] .mtq_css_button {
